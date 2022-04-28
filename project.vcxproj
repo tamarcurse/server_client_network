@@ -145,6 +145,7 @@
     <ClCompile Include="DiscoverMessege.cpp" />
     <ClCompile Include="project.cpp" />
     <ClCompile Include="Simulator.cpp" />
+    <ClCompile Include="Source.cpp" />
     <ClCompile Include="StatusMesseage.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -158,6 +159,17 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="project.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xsd Include="config.json">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Xsd>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Text.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

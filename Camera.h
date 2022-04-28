@@ -4,6 +4,9 @@
 #include "StatusMesseage.h"
 #include "DiscoverMessege.h"
 #include "Buffer.h"
+#include <mutex>
+#include <thread>
+//#include <mutex>
 class Camera
 {
 protected:
@@ -12,6 +15,7 @@ protected:
 	int bufferMessegeIndex;
 	Buffer* bufferString;
 	bool isActive;
+	//std::mutex* mutexBuffer;
 	//static int count;
 public:
 	Camera(char cameraId);
@@ -20,5 +24,6 @@ public:
 	void SendToBUffer();
 	void run();
 	void stop();
+	void SendToServer();
 };
 

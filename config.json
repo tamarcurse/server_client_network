@@ -1,0 +1,6 @@
+﻿{
+  "num_of_camera": 4,
+  "num_of_image_to_second": 5,
+  "ip_sever": "127.0.0.1",
+   "port_sever": "127.0.0.1"
+}

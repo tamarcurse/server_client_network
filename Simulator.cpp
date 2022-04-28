@@ -13,10 +13,12 @@ Simulator::Simulator()
 void Simulator::RunCamera()
 {
 	char input;
-	std::thread  threads[N];
+	std::thread  threadsGenerate[N];
+	std::thread  threadsSend[N];
 	for (int i = 0; i < N; i++)
 	{
-		threads[i] = std::thread(&Camera::run, *(camerasArray[i]));
+		threadsGenerate[i] = std::thread(&Camera::run, *(camerasArray[i]));
+		threadsSend[i] = std::thread(&Camera::SendToServer, *(camerasArray[i]));
 		//std::thread Thread(&Camera::run, camerasArray[i]);
 		//camerasArray[i]->run();
 	}
@@ -25,8 +27,14 @@ void Simulator::RunCamera()
 	for (int i = 0; i < N; i++)
 	{
 		camerasArray[i]->stop();
-
+		
 	}
+	/*for (int i = 0; i < N; i++)
+	{
+		threadsGenerate[i].detach();
+		threadsSend[i].detach();
+
+	}*/
 	//camerasArray[0]->stop();
 	//Stop();
 }
