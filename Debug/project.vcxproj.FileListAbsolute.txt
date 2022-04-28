@@ -1,0 +1,2 @@
+C:\Users\HOME\Documents\irox\c++\project\Debug\project.exe
+C:\Users\HOME\Documents\irox\c++\project\Debug\project.pdb
