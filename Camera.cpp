@@ -4,12 +4,15 @@
 #include <iostream>
 #include <thread>
 #include <mutex>
+#include <fstream>
+using namespace std;
 using namespace std::literals::chrono_literals;
-Camera::Camera(char cameraId)
+Camera::Camera(char cameraId,int num_of_image_to_second)
 {
 	this->cameraId = cameraId;
 	//bufferMessege = (baseMessage*)malloc(sizeof(bufferMessege) * N);
 	bufferMessege = NULL;
+	this->num_of_image_to_second = num_of_image_to_second;
 	isActive = true;
 	bufferString = new Buffer();
 	bufferMessegeIndex = -1;
@@ -102,6 +105,17 @@ void Camera::SendToServer()
 {
 	while (isActive)
 	{
+		int x;
+		unsigned char** buffer = bufferString->GetBuffer();
+		ofstream myfile;
+		std::string fileName = "camera" + cameraId;
+		myfile.open(fileName+".txt");
+		myfile.close();
+		while (bufferString->IsEmptay())
+		{
+
+		}
+		//_sleep((60 / num_of_image_to_second) * 1000);
 		std::this_thread::sleep_for(3s);
 		std::cout << "the buffer sending to sever...\n";
 		bufferString->CleanBuffer();

@@ -3,10 +3,12 @@
 
 #include <iostream>
 #include "Simulator.h"
+#include "Configur.h"
 int main()
 {
     Simulator* s = new Simulator();
-    
+   // Configur* c = new Configur("Text.txt");
+    std::cout << "hello";
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

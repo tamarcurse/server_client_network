@@ -142,6 +142,7 @@
     <ClCompile Include="baseMessage.cpp" />
     <ClCompile Include="Buffer.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Configur.cpp" />
     <ClCompile Include="DiscoverMessege.cpp" />
     <ClCompile Include="project.cpp" />
     <ClCompile Include="Simulator.cpp" />
@@ -152,6 +153,7 @@
     <ClInclude Include="baseMessage.h" />
     <ClInclude Include="Buffer.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Configur.h" />
     <ClInclude Include="DiscoverMessege.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Simulator.h" />
@@ -161,7 +163,7 @@
     <ResourceCompile Include="project.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Xsd Include="config.json">
+    <Xsd Include="config.txt">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>

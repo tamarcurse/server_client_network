@@ -15,10 +15,11 @@ protected:
 	int bufferMessegeIndex;
 	Buffer* bufferString;
 	bool isActive;
+	int num_of_image_to_second;
 	//std::mutex* mutexBuffer;
 	//static int count;
 public:
-	Camera(char cameraId);
+	Camera(char cameraId,int num_of_image_to_second);
 	~Camera();
 	void Generate();
 	void SendToBUffer();

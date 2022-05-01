@@ -34,10 +34,15 @@ void Buffer::CleanBuffer()
 	}
 	
 
-	free(buffer);
+	//free(buffer);
 	
 	count = 0;
 	m.unlock();
+}
+
+bool Buffer::IsEmptay()
+{
+	return count==0;
 }
 
 Buffer::Buffer()

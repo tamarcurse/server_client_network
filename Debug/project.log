@@ -1,2 +1,8 @@
-﻿  Buffer.cpp
-  project.vcxproj -> C:\Users\HOME\Documents\irox\c++\project\Debug\project.exe
+﻿  Camera.cpp
+C:\Users\HOME\Documents\irox\c++\project\Camera.cpp(38,78): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\HOME\Documents\irox\c++\project\Camera.cpp(38,64): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\HOME\Documents\irox\c++\project\Camera.cpp(38,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\HOME\Documents\irox\c++\project\Camera.cpp(107,3): error C4996: '_sleep': This function or variable has been superceded by newer library or operating system functionality. Consider using Sleep instead. See online help for details.
+C:\Users\HOME\Documents\irox\c++\project\Camera.cpp(106,7): warning C4101: 'x': unreferenced local variable
+  Simulator.cpp
+  Generating Code...

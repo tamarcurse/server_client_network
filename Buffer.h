@@ -12,7 +12,9 @@ protected:
 public:
 	void AddToBuffer(unsigned char* newMessege);
 	unsigned char** GetBuffer();
+	
 	void CleanBuffer();
+	bool IsEmptay();
 	Buffer();
 	~Buffer();
 

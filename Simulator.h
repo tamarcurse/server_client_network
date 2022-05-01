@@ -4,11 +4,13 @@
 #include <stdio.h>
 #include <thread>
 #include <iostream>
-#define N 4
+#include "Configur.h"
+#define MAX_CAMERA 20
 class Simulator
 {
 protected:
 	Camera** camerasArray;
+	Configur* config;
 public:
 	Simulator();
 	~Simulator();
