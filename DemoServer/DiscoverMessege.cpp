@@ -4,6 +4,10 @@
 #include <stdlib.h>
 #include <iostream>
 
+DiscoverMessege::DiscoverMessege()
+{
+}
+
 DiscoverMessege::DiscoverMessege(int messageId, int messageType, float distance, float angle, float speed) :baseMessage(messageId, messageType)
 {
 	if (distance >= 500 && distance <= 10000)
@@ -48,4 +52,15 @@ void DiscoverMessege::print()
 unsigned char* DiscoverMessege::getMessageBuffer()
 {
 	return this->messageBuffer;
+}
+
+DiscoverMessege::DiscoverMessege(unsigned char* messageBuffer):baseMessage(messageBuffer)
+{
+}
+
+std::string DiscoverMessege::toString()
+{
+	std::stringstream stream;
+	stream << "messegeId : " << messageId << "\tmessageType: " + messageId << "\tdistance: " << distance << "\tangle: " << this->angle << "\tspeed:" << this->speed << "\n";
+	return stream.str();
 }

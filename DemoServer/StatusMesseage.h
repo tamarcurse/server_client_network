@@ -1,6 +1,6 @@
 #pragma once
 #include "baseMessage.h"
-
+#include <sstream>
 class StatusMesseage :
     public baseMessage
 {
@@ -11,8 +11,10 @@ public:
     void parseBack();
     StatusMesseage(int messageId, int messageType, short status);
     StatusMesseage();
-    ~StatusMesseage();
+   
     void print();
     unsigned char* getMessageBuffer();
+    std::string StatusMesseage::toString();
+    StatusMesseage(unsigned char* messageBuffer);
 };
 

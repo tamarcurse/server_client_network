@@ -1,13 +1,13 @@
 #include <iostream>
 #include <winsock2.h>
 #include <ws2tcpip.h>
-
+#include "Simulator.h"
 #pragma comment(lib,"Ws2_32.lib")
 using namespace std;
 
 int main(int argc, char *argv[])
 {
-	string buffer = "hello.";
+	/*string buffer = "hello.";
 
 	if(argc > 1)
 	{
@@ -33,5 +33,6 @@ int main(int argc, char *argv[])
 
 	closesocket(server);
 	WSACleanup();
-	cout << "Socket closed." << endl << endl;
+	cout << "Socket closed." << endl << endl;*/
+	Simulator* s = new Simulator();
 }

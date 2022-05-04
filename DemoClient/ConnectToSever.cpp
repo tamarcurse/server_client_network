@@ -1,28 +1,31 @@
 #include "ConnectToSever.h"
-
+#include <sstream>
 void ConnectToSever::sendMesseToserver(Buffer &buffer, char cameraId)
 
 {
 	unsigned char** messege = buffer.GetBuffer();
-	string str = "&" + cameraId;
-	str += "&";
-	send(*(_In_ SOCKET*)pserver, str.c_str(), str.length(), 0);
+	stringstream str;
+	str << "&" << cameraId << "&";
 
+	send(server, str.str().c_str(), str.str().length(), 0);
+	str = (stringstream)"";
 	for (int i = 0; i < buffer.GetCount(); i++)
 	{
-		str = (char*)messege[i];
-		str = "#" + str + "#";
-		send(*(_In_ SOCKET*)pserver, str.c_str(), str.length(), 0);
+
+		str << "#" << messege[i] << "#";
+		send(server, str.str().c_str(), str.str().length(), 0);
+		str = (stringstream)"";
 	}
-	str = "END";
-	send(*(_In_ SOCKET*)pserver, str.c_str(), str.length(), 0);
+	str << "END";
+	send(server, str.str().c_str(), str.str().length(), 0);
+	str = (stringstream)"";
 }
 
 void ConnectToSever::ConnectToMyServer(const char* ip, int port)
 {
 	WSAStartup(MAKEWORD(2, 0), &wsa_data);
-	const auto server = socket(AF_INET, SOCK_STREAM, 0);
-	pserver = (void*)&server;
+	 server = socket(AF_INET, SOCK_STREAM, 0);
+	
 	InetPton(AF_INET, ip, &addr.sin_addr.s_addr);
 
 	addr.sin_family = AF_INET;
@@ -35,7 +38,7 @@ void ConnectToSever::ConnectToMyServer(const char* ip, int port)
 
 void ConnectToSever::CloseSocket()
 {
-	closesocket(*(_In_ SOCKET*)pserver);
+	closesocket(server);
 	WSACleanup();
 	cout << "Socket closed." << endl << endl;
 }

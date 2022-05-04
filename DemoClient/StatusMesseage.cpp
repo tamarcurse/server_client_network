@@ -34,3 +34,4 @@ void StatusMesseage::print()
 {
 	std::cout << "type: " << this->messageType << "\t" << "status: " << this->status << "\n";
 }
+

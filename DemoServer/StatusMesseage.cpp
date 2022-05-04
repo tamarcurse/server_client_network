@@ -3,7 +3,7 @@
 #include <cstring>
 #include <stdlib.h>
 #include <iostream>
-
+#include <sstream>
 void StatusMesseage::parseMessage()
 {
 
@@ -30,7 +30,26 @@ StatusMesseage::StatusMesseage(int messageId, int messageType, short status) :ba
 		this->status = status;
 }
 
+StatusMesseage::StatusMesseage()
+{
+}
+
 void StatusMesseage::print()
 {
 	std::cout << "type: " << this->messageType << "\t" << "status: " << this->status << "\n";
+}
+unsigned char* StatusMesseage::getMessageBuffer()
+{
+	return messageBuffer;
+}
+std::string StatusMesseage::toString()
+{
+	std::string res = "messegeId : " + messageId;
+	res += "\tmessageType: " + messageId;
+	res += " status: " + status;
+
+	return res;
+}
+StatusMesseage::StatusMesseage(unsigned char* messageBuffer) :baseMessage(messageBuffer)
+{
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include "baseMessage.h"
+#include <sstream>
 class DiscoverMessege :
     public baseMessage
 {
@@ -15,5 +16,7 @@ public:
     void parseBack();
     void print();
     unsigned char* getMessageBuffer();
+    DiscoverMessege(unsigned char* messageBuffer);
+    std::string DiscoverMessege::toString();
 };
 

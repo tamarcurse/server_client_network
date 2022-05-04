@@ -13,7 +13,7 @@ private:
 	SOCKADDR_IN addr;
 	int port;
 	char* ip;
-	void * pserver;
+	_In_ SOCKET server;
 public:
 	void sendMesseToserver(Buffer &buffer,char cameraId);
 	void ConnectToMyServer(const char* ip, int port);

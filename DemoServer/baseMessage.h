@@ -14,9 +14,10 @@ public:
 	virtual void print() = 0;
 	unsigned char* getMessageBuffer();
 	baseMessage();
+	baseMessage(unsigned char * a);
 	~baseMessage();
 	baseMessage(int messageId, int messageType);
-
+	
 
 };
 

@@ -2,7 +2,12 @@
 #include <iostream>
 
 #include "DemoServer.h"
-
+#include <string>
+#include "baseMessage.h"
+#include "StatusMesseage.h"
+#include "DiscoverMessege.h"
+#include <fstream>
+#include <sstream>
 #pragma comment(lib,"Ws2_32.lib")
 using namespace std;
 
@@ -18,10 +23,10 @@ int main()
 	server_addr.sin_family = AF_INET;
 	server_addr.sin_port = htons(5555);
 
-	::bind(server, reinterpret_cast<SOCKADDR *>(&server_addr), sizeof(server_addr));
+	::bind(server, reinterpret_cast<SOCKADDR*>(&server_addr), sizeof(server_addr));
 	listen(server, 0);
 
-	cout << "Listening for incoming connections..." << endl;
+	std::cout << "Listening for incoming connections..." << endl;
 
 	int client_addr_size = sizeof(client_addr);
 
@@ -29,16 +34,16 @@ int main()
 	{
 		SOCKET client;
 
-		if ((client = accept(server, reinterpret_cast<SOCKADDR *>(&client_addr), &client_addr_size)) != INVALID_SOCKET)
+		if ((client = accept(server, reinterpret_cast<SOCKADDR*>(&client_addr), &client_addr_size)) != INVALID_SOCKET)
 		{
 			auto fut = async(launch::async, on_client_connect, client);
 		}
 
 		const auto last_error = WSAGetLastError();
-		
-		if(last_error > 0)
+
+		if (last_error > 0)
 		{
-			cout << "Error: " << last_error << endl;
+			std::cout << "Error: " << last_error << endl;
 		}
 	}
 }
@@ -46,13 +51,48 @@ int main()
 void on_client_connect(SOCKET client)
 {
 	char buffer[1024];
+	ofstream  myfile;
+	std::string messege = "";
+	std::cout << "Client connected!" << endl;
+	while (true)
+	{
+		recv(client, buffer, sizeof(buffer), 0);
+		baseMessage* baseMessage_=NULL;
+		if (buffer[0] == '&' && buffer[2] == '&')
+		{
+			std::stringstream name;
+			name << "camera_" << buffer[1] << ".txt";
 
-	cout << "Client connected!" << endl;
-	recv(client, buffer, sizeof(buffer), 0);
+			myfile = (ofstream)(name.str().c_str());
 
-	cout << "Client says: " << buffer << endl;
-	memset(buffer, 0, sizeof(buffer));
+		}
+		else
+			if (buffer[0] == '#') {
+				for (int i = 1; buffer[i] != '#'; i++)
+				{
+					messege += buffer[i];
+				}
+				if (messege.length() == 14)
+				{
+					baseMessage_ = new DiscoverMessege((unsigned char*)messege.c_str());
+					baseMessage_->parseMessage();
+					myfile << ((DiscoverMessege*)(baseMessage_))->toString();
 
+				}
+				else {
+					baseMessage_ = new StatusMesseage((unsigned char*)messege.c_str());
+					baseMessage_->parseMessage();
+					myfile << ((StatusMesseage*)(baseMessage_))->toString();
+				}
+				delete baseMessage_;
+
+			}
+			else if(buffer[0]=='E') {
+				myfile.close();
+			}
+		std::cout << "Client says: " << buffer << endl;
+		memset(buffer, 0, sizeof(buffer));
+	}
 	closesocket(client);
-	cout << "Client disconnected." << endl;
+	std::cout << "Client disconnected." << endl;
 }
